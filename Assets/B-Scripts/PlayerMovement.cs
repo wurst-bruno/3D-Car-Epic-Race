@@ -8,8 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed;
     public float RotationSpeed;
 
-    // PANGUE ES EL GOAT
-
+   
     void Start()
     {
 
