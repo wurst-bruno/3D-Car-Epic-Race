@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,11 +9,13 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed;
     float movementSpeedBackUp;
     public float RotationSpeed;
+    
 
    
     void Start()
     {
         movementSpeedBackUp = movementSpeed;
+        
     }
 
     // Update is called once per frame
@@ -22,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //transform.position += new Vector3(0, 0, movementSpeed); es lo mismo que lo de acá abajo
             transform.Translate(0, 0, movementSpeed);
+            
         }
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
@@ -35,8 +39,7 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.Rotate(0, -RotationSpeed, 0);
         }
-
-
+        
     }
 
     void OnCollisionEnter(Collision col)
@@ -44,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
         if (col.gameObject.name == "Pasto")
         {
             movementSpeed = movementSpeed/2;
+            //SceneManager.LoadScene("Scene"); carga la sig escena , se podría usar al final.
 
         }
         
