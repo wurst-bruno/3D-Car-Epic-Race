@@ -16,10 +16,10 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         movementSpeedBackUp = movementSpeed;
-        
+        //SceneManager.LoadScene("Scene"); carga la sig escena , se podría usar al final.
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.W)  || Input.GetKey(KeyCode.UpArrow))
@@ -44,16 +44,9 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.name == "Pasto")
-        {
-            movementSpeed = movementSpeed/2;
-            //SceneManager.LoadScene("Scene"); carga la sig escena , se podría usar al final.
-
-
-        }
+        
 
         //Colision con objeto de veolidad
-
         if (col.gameObject.name == "Speed")
         {
             movementSpeed = 0.15f;
@@ -62,11 +55,18 @@ public class PlayerMovement : MonoBehaviour
         //if donde si la variable es igual a 0 MovementSeed == BackUp
 
     }
-    private void OnCollisionExit(Collision collision)
+
+    void OnCollisionStay(Collision collisionInfo)
     {
-        if(collision.gameObject.name == "Pasto")
+        if (collisionInfo.gameObject.name == "Asfalto")
         {
-            movementSpeed = movementSpeedBackUp;
+            movementSpeed = 0.1f;
+        }
+        if (collisionInfo.gameObject.name == "Pasto")
+        {
+            movementSpeed = 0.05f;
         }
     }
+
+   
 }
