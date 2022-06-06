@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pasto
   - Asfalto
+  - Speed
   layers:
   - Default
   - TransparentFX
