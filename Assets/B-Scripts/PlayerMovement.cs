@@ -50,10 +50,15 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+        if (col.gameObject.tag == "Speed")
+        {
+            movementSpeed = 1f;
 
+
+        }
 
         //Colision con objeto de veolidad
-        //if (col.gameObject.name == "Speed")
+        //if (col.gameObject.name == "S peed")
         //{
         //    movementSpeed = 0.15f;
         //    Variable dentro de un temporizar
@@ -80,11 +85,6 @@ public class PlayerMovement : MonoBehaviour
             //    movementSpeed = 0.05f;
             //}
         }
-        if (collisionInfo.gameObject.tag == "Speed")
-        {
-            movementSpeed = 1f;
-
-
-        }
+       
     }
 }

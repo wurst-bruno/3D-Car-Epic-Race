@@ -16,7 +16,7 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float elapsedTime = Time.time;
+        float elapsedTime = Time.timeSinceLevelLoad;
         txtTime.text = "El tiempo es de:  " + elapsedTime.ToString();
 
     }
