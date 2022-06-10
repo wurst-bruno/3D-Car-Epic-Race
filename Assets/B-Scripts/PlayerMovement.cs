@@ -13,7 +13,8 @@ public class PlayerMovement : MonoBehaviour
     float movementSpeedBackUp;
     public float RotationSpeed;
     public GameObject sppedCube;
-
+    bool isSpeedMod = false;
+    float speedModTime;
 
     void Start()
     {
@@ -46,31 +47,26 @@ public class PlayerMovement : MonoBehaviour
         }
 
         vel_actual.text = "Velocidad actual:  " + movementSpeed.ToString();
-
+        if(isSpeedMod)
+        {
+            speedModTime -= Time.deltaTime;
+            if(speedModTime <= 0)
+            {
+                isSpeedMod = false;
+                speedModTime = 0;
+                movementSpeed = movementSpeedBackUp;
+            }
+        }
     }
 
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.name == "Speed1")
         {
-            movementSpeed = 1f;
-            Destroy(sppedCube);
-        }
-
-        //Colision con objeto de veolidad
-        //if (col.gameObject.name == "S peed")
-        //{
-        //    movementSpeed = 0.15f;
-        //    Variable dentro de un temporizar
-        //}
-        //if donde si la variable es igual a 0 MovementSeed == BackUp
-
-    }
-    void OnColiisionExit(Collision Col)
-    {
-        if(Col.gameObject.name == "Pasto")
-        {
-            movementSpeed = 0.4f;
+            movementSpeed = 0.6f;
+            Destroy(col.gameObject);
+            isSpeedMod = true;
+            speedModTime = 15f;
         }
     }
 
@@ -79,19 +75,8 @@ public class PlayerMovement : MonoBehaviour
         if (collisionInfo.gameObject.tag == "Pasto")
         {
             movementSpeed = 0.1f;
-
-
-            // Si no sirve el if del void enter usar esto;
-
-            //if (collisionInfo.gameObject.name == "Speed")
-            //{
-            //    movementSpeed = 0.05f;
-            //}
+            isSpeedMod = true;
+            speedModTime = 0.1f;
         }
-        else
-        {
-            movementSpeed = 0.4f;
-        }
-       
     }
 }
