@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed;
     float movementSpeedBackUp;
     public float RotationSpeed;
+    public GameObject sppedCube;
 
 
     void Start()
@@ -50,11 +51,10 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Speed")
+        if (col.gameObject.name == "Speed1")
         {
             movementSpeed = 1f;
-
-
+            Destroy(sppedCube);
         }
 
         //Colision con objeto de veolidad
@@ -66,16 +66,19 @@ public class PlayerMovement : MonoBehaviour
         //if donde si la variable es igual a 0 MovementSeed == BackUp
 
     }
-
-    void OnCollisionStay(Collision collisionInfo)
+    void OnColiisionExit(Collision Col)
     {
-        if (collisionInfo.gameObject.tag == "Asfalto")
+        if(Col.gameObject.name == "Pasto")
         {
             movementSpeed = 0.4f;
         }
+    }
+
+    void OnCollisionStay(Collision collisionInfo)
+    {
         if (collisionInfo.gameObject.tag == "Pasto")
         {
-            movementSpeed = 0.2f;
+            movementSpeed = 0.1f;
 
 
             // Si no sirve el if del void enter usar esto;
@@ -84,6 +87,10 @@ public class PlayerMovement : MonoBehaviour
             //{
             //    movementSpeed = 0.05f;
             //}
+        }
+        else
+        {
+            movementSpeed = 0.4f;
         }
        
     }
