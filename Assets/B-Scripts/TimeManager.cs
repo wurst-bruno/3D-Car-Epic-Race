@@ -10,7 +10,7 @@ public class TimeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -20,5 +20,14 @@ public class TimeManager : MonoBehaviour
         txtTime.text = "El tiempo es de:  " + elapsedTime.ToString();
 
     }
-    
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "SpeedUP")
+        {
+            float elapsedTime = Time.timeSinceLevelLoad;
+            txtTime.text = "El tiempo es de:  " + elapsedTime.ToString();
+
+        }
+
+    }
 }

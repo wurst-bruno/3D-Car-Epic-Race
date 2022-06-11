@@ -15,7 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject sppedCube;
     bool isSpeedMod = false;
     float speedModTime;
-
+    float Vueltas;
+    int vidas;
     void Start()
     {
         movementSpeedBackUp = movementSpeed;
@@ -57,16 +58,33 @@ public class PlayerMovement : MonoBehaviour
                 movementSpeed = movementSpeedBackUp;
             }
         }
+        if (Vueltas ==3)
+        {
+            Debug.Log("Hola mama");
+        }
     }
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.name == "Speed1")
+        if (col.gameObject.tag == "SpeedUP")
         {
             movementSpeed = 0.6f;
             Destroy(col.gameObject);
             isSpeedMod = true;
             speedModTime = 15f;
+        }
+        if (col.gameObject.tag == "DeathWall")
+        {
+            Destroy(gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        if (col.gameObject.name == "Meta")
+        {
+            Vueltas++;
+        }
+        for (vidas =1; vidas<3; vidas++)
+        {
+            Debug.Log("holi");
         }
     }
 
@@ -77,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
             movementSpeed = 0.1f;
             isSpeedMod = true;
             speedModTime = 0.1f;
+            vidas--;
         }
     }
 }
