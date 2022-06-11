@@ -20,14 +20,5 @@ public class TimeManager : MonoBehaviour
         txtTime.text = "El tiempo es de:  " + elapsedTime.ToString();
 
     }
-    void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.tag == "SpeedUP")
-        {
-            float elapsedTime = Time.timeSinceLevelLoad;
-            txtTime.text = "El tiempo es de:  " + elapsedTime.ToString();
-
-        }
-
-    }
+    
 }

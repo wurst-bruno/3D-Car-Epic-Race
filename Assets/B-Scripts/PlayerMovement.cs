@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     public Text vel_actual;
-    public int vidas;
+    public Text vuelta_actual;
+
     public float movementSpeed;
     float movementSpeedBackUp;
     public float RotationSpeed;
@@ -57,12 +58,15 @@ public class PlayerMovement : MonoBehaviour
                 speedModTime = 0;
                 movementSpeed = movementSpeedBackUp;
             }
-        }
+        }        
+
         if (Vueltas ==3)
         {
             Debug.Log("Hola mama");
         }
+
         
+
     }
 
     void OnCollisionEnter(Collision col)
@@ -83,8 +87,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Vueltas++;
         }
-
         
+
     }
 
     void OnCollisionStay(Collision collisionInfo)
@@ -94,16 +98,7 @@ public class PlayerMovement : MonoBehaviour
             movementSpeed = 0.1f;
             isSpeedMod = true;
             speedModTime = 0.1f;
-            vidas--;
-            for (int i = 0; i < vidas; i--)
-            {
-                if (i == 0)
-                {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
-                }
-
-            }
+                       
         }
     }
 }
