@@ -8,7 +8,12 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     public Text vel_actual;
-    public Text vuelta_actual;
+    public Text rot_actual;
+    public Text lap_actual;
+
+    public GameObject Ganaste;
+    public GameObject Moriste;
+
 
     public float movementSpeed;
     float movementSpeedBackUp;
@@ -17,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     bool isSpeedMod = false;
     float speedModTime;
     float Vueltas;
+    float delay = 3;
     
     void Start()
     {
@@ -27,8 +33,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
+        lap_actual.text = "Lap actual:  " + Vueltas.ToString() + "/3";
         transform.Translate(0, 0, movementSpeed * Input.GetAxis("Vertical"));
+
 
         //if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         //{
@@ -49,7 +56,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         vel_actual.text = "Velocidad actual:  " + movementSpeed.ToString();
-        if(isSpeedMod)
+
+        if (isSpeedMod)
         {
             speedModTime -= Time.deltaTime;
             if(speedModTime <= 0)
@@ -63,9 +71,15 @@ public class PlayerMovement : MonoBehaviour
         if (Vueltas ==3)
         {
             Debug.Log("Hola mama");
+            Ganaste.SetActive(true);
+            StartCoroutine(Countdown());
+        }
+        IEnumerator Countdown()
+        {
+            yield return new WaitForSeconds(delay);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-        
 
     }
 
@@ -80,7 +94,12 @@ public class PlayerMovement : MonoBehaviour
         }
         if (col.gameObject.tag == "DeathWall")
         {
-            Destroy(gameObject);
+            Moriste.SetActive(true);
+            StartCoroutine(Countdown());
+        }
+        IEnumerator Countdown()
+        {
+            yield return new WaitForSeconds(delay);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         if (col.gameObject.name == "Meta")
@@ -95,10 +114,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collisionInfo.gameObject.tag == "Pasto")
         {
-            movementSpeed = 0.1f;
+            movementSpeed = 0.05f;
             isSpeedMod = true;
-            speedModTime = 0.1f;
+            speedModTime = 0.05f;
                        
         }
+
     }
 }

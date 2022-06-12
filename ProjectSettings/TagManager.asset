@@ -9,6 +9,7 @@ TagManager:
   - Speed
   - SpeedUP
   - DeathWall
+  - Meta
   layers:
   - Default
   - TransparentFX
