@@ -22,9 +22,12 @@ public class PlayerMovement : MonoBehaviour
     public GameObject sppedCube;
     bool isSpeedMod = false;
     float speedModTime;
-    float Vueltas;
+    float Vueltas = 1;
     float delay = 3;
-    
+    public GameObject Chancho;
+    public GameObject PirelliCube;
+
+
     void Start()
     {
         movementSpeedBackUp = movementSpeed;
@@ -36,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         lap_actual.text = "Lap actual:  " + Vueltas.ToString() + "/3";
+
         transform.Translate(0, 0, movementSpeed * Input.GetAxis("Vertical"));
 
 
@@ -63,20 +67,23 @@ public class PlayerMovement : MonoBehaviour
         if (isSpeedMod)
         {
             speedModTime -= Time.deltaTime;
-            if(speedModTime <= 0)
+            if (speedModTime <= 0)
             {
                 isSpeedMod = false;
                 speedModTime = 0;
                 movementSpeed = movementSpeedBackUp;
                 RotationSpeed = RotationSpeedBackUp;
             }
-        }        
+        }
+        
 
-        if (Vueltas ==3)
+        if (Vueltas == 3)
         {
             Debug.Log("Hola mama");
             Ganaste.SetActive(true);
+            InstantiateChancho();
             StartCoroutine(Countdown());
+
         }
         IEnumerator Countdown()
         {
@@ -92,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         if (col.gameObject.tag == "SpeedUP")
         {
             movementSpeed = 0.6f;
-            
+
             Destroy(col.gameObject);
             isSpeedMod = true;
             speedModTime = 15f;
@@ -106,6 +113,8 @@ public class PlayerMovement : MonoBehaviour
         if (col.gameObject.tag == "DeathWall")
         {
             Moriste.SetActive(true);
+            InstantiatePirelliCube();
+
             StartCoroutine(Countdown());
         }
         IEnumerator Countdown()
@@ -117,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Vueltas++;
         }
-        
+
 
     }
 
@@ -128,8 +137,18 @@ public class PlayerMovement : MonoBehaviour
             movementSpeed = 0.1f;
             isSpeedMod = true;
             speedModTime = 0.1f;
-                       
+
         }
 
     }
+    public void InstantiateChancho()
+    {
+        Instantiate(Chancho);
+
+    }
+    public void InstantiatePirelliCube()
+    {
+        Instantiate(PirelliCube);
+    }
+
 }
