@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float movementSpeed;
     float movementSpeedBackUp;
+    float RotationSpeedBackUp;
     public float RotationSpeed;
     public GameObject sppedCube;
     bool isSpeedMod = false;
@@ -27,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         movementSpeedBackUp = movementSpeed;
+        RotationSpeedBackUp = RotationSpeed;
         //SceneManager.LoadScene("Scene"); carga la sig escena , se podría usar al final.
 
     }
@@ -56,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         vel_actual.text = "Velocidad actual:  " + movementSpeed.ToString();
+        rot_actual.text = "Rotation Speed:  " + RotationSpeed.ToString();
 
         if (isSpeedMod)
         {
@@ -65,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
                 isSpeedMod = false;
                 speedModTime = 0;
                 movementSpeed = movementSpeedBackUp;
+                RotationSpeed = RotationSpeedBackUp;
             }
         }        
 
@@ -88,9 +92,16 @@ public class PlayerMovement : MonoBehaviour
         if (col.gameObject.tag == "SpeedUP")
         {
             movementSpeed = 0.6f;
+            
             Destroy(col.gameObject);
             isSpeedMod = true;
             speedModTime = 15f;
+        }
+        if (col.gameObject.tag == "RotUp")
+        {
+            RotationSpeed = 5f;
+            Destroy(col.gameObject);
+
         }
         if (col.gameObject.tag == "DeathWall")
         {
