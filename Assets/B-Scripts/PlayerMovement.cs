@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (col.gameObject.tag == "RotUp")
         {
-            RotationSpeed = 5f;
+            RotationSpeed = 3f;
             Destroy(col.gameObject);
 
         }
@@ -125,9 +125,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collisionInfo.gameObject.tag == "Pasto")
         {
-            movementSpeed = 0.05f;
+            movementSpeed = 0.1f;
             isSpeedMod = true;
-            speedModTime = 0.05f;
+            speedModTime = 0.1f;
                        
         }
 
