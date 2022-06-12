@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class TimeManager : MonoBehaviour
 {
     public Text txtTime;
+    public float customTime;
+    public Text txtTimeCustom;
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +21,8 @@ public class TimeManager : MonoBehaviour
     {
         float elapsedTime = Time.timeSinceLevelLoad;
         txtTime.text = "El tiempo es de:  " + elapsedTime.ToString();
-
+        customTime = 0;
     }
+
     
 }

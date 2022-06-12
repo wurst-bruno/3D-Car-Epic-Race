@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Ganaste;
     public GameObject Moriste;
 
+    
+
 
     public float movementSpeed;
     float movementSpeedBackUp;
@@ -26,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     float delay = 3;
     public GameObject Chancho;
     public GameObject PirelliCube;
+    int chanch = 1;
+    int pircube = 1;
 
 
     void Start()
@@ -75,14 +79,20 @@ public class PlayerMovement : MonoBehaviour
                 RotationSpeed = RotationSpeedBackUp;
             }
         }
+
         
 
         if (Vueltas == 3)
         {
             Debug.Log("Hola mama");
             Ganaste.SetActive(true);
-            InstantiateChancho();
             StartCoroutine(Countdown());
+            while (chanch<100)
+            {
+                InstantiateChancho();
+                chanch++;
+
+            }
 
         }
         IEnumerator Countdown()
@@ -96,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+
         if (col.gameObject.tag == "SpeedUP")
         {
             movementSpeed = 0.6f;
@@ -104,27 +115,36 @@ public class PlayerMovement : MonoBehaviour
             isSpeedMod = true;
             speedModTime = 15f;
         }
+
         if (col.gameObject.tag == "RotUp")
         {
             RotationSpeed = 3f;
             Destroy(col.gameObject);
 
         }
+
         if (col.gameObject.tag == "DeathWall")
         {
             Moriste.SetActive(true);
-            InstantiatePirelliCube();
-
+            
             StartCoroutine(Countdown());
+            while (pircube < 200)
+            {
+                InstantiatePirelliCube();
+                pircube++;
+
+            }
         }
+
         IEnumerator Countdown()
         {
             yield return new WaitForSeconds(delay);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         if (col.gameObject.name == "Meta")
-        {
+        {                       
             Vueltas++;
+
         }
 
 
