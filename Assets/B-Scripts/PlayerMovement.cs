@@ -48,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
         lap_actual.text = "Lap actual:  " + Vueltas.ToString() + "/3";
 
         transform.Translate(0, 0, movementSpeed * Input.GetAxis("Vertical"));
+        //transform.Translate(RotationSpeed * Input.GetAxis("Horizontal"), 0, 0);
+        //transform.Translate(0,RotationSpeed * Input.GetAxis("Horizontal"), 0);
 
 
         //if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
@@ -59,6 +61,8 @@ public class PlayerMovement : MonoBehaviour
         //{
         //    transform.Translate(0, 0, -movementSpeed);
         //}
+
+
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             transform.Rotate(0, RotationSpeed, 0);
@@ -127,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (col.gameObject.tag == "RotUp")
         {
-            RotationSpeed = 3f;
+            RotationSpeed = 4f;
             Destroy(col.gameObject);
 
         }
@@ -147,6 +151,8 @@ public class PlayerMovement : MonoBehaviour
             while (pircube < 200)
             {
                 InstantiatePirelliCube();
+
+
                 pircube++;
 
             }
