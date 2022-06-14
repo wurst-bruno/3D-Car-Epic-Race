@@ -14,8 +14,11 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Ganaste;
     public GameObject Moriste;
 
-    
 
+    //[Header("Finish Line")]
+    //public GameObject FinishLine;
+    //public GameObject KeyToWin;
+    //public GameObject Instantiador;
 
     public float movementSpeed;
     float movementSpeedBackUp;
@@ -106,6 +109,12 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+        //if(col.gameObject.name == "Instantiador")
+        //{
+        //    Instantiate(KeyToWin);
+        //    Instantiate(FinishLine);
+        //    Destroy(Instantiador);
+        //}
 
         if (col.gameObject.tag == "SpeedUP")
         {
@@ -122,6 +131,13 @@ public class PlayerMovement : MonoBehaviour
             Destroy(col.gameObject);
 
         }
+
+        //if (col.gameObject.tag == "Open door")
+        //{
+        //    Destroy(FinishLine);
+            
+
+        //}
 
         if (col.gameObject.tag == "DeathWall")
         {
@@ -144,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
         if (col.gameObject.name == "Meta")
         {                       
             Vueltas++;
-
+           
         }
 
 
@@ -170,5 +186,5 @@ public class PlayerMovement : MonoBehaviour
     {
         Instantiate(PirelliCube);
     }
-
+    
 }

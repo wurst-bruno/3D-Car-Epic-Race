@@ -11,6 +11,7 @@ TagManager:
   - DeathWall
   - Meta
   - RotUp
+  - Open door
   layers:
   - Default
   - TransparentFX
