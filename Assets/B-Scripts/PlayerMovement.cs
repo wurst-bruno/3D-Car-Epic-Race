@@ -48,8 +48,8 @@ public class PlayerMovement : MonoBehaviour
         lap_actual.text = "Lap actual:  " + Vueltas.ToString() + "/3";
 
         transform.Translate(0, 0, movementSpeed * Input.GetAxis("Vertical"));
-        //transform.Translate(RotationSpeed * Input.GetAxis("Horizontal"), 0, 0);
-        //transform.Translate(0,RotationSpeed * Input.GetAxis("Horizontal"), 0);
+        //transform.Rotate(RotationSpeed * Input.GetAxis("Horizontal"), 0, 0);
+        transform.Rotate(0, RotationSpeed * Input.GetAxis("Horizontal"), 0);
 
 
         //if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
@@ -63,14 +63,14 @@ public class PlayerMovement : MonoBehaviour
         //}
 
 
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Rotate(0, RotationSpeed, 0);
-        }
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.Rotate(0, -RotationSpeed, 0);
-        }
+        //if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        //{
+        //    transform.Rotate(0, RotationSpeed, 0);
+        //}
+        //if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        //{
+        //    transform.Rotate(0, -RotationSpeed, 0);
+        //}
 
         vel_actual.text = "Velocidad actual:  " + movementSpeed.ToString();
         rot_actual.text = "Rotation Speed:  " + RotationSpeed.ToString();
@@ -122,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (col.gameObject.tag == "SpeedUP")
         {
-            movementSpeed = 0.6f;
+            movementSpeed = 0.5f;
 
             Destroy(col.gameObject);
             isSpeedMod = true;
@@ -131,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (col.gameObject.tag == "RotUp")
         {
-            RotationSpeed = 4f;
+            RotationSpeed = 3f;
             Destroy(col.gameObject);
 
         }

@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Race- Chanchito.unity
     guid: 2e788364f061b8c4bba75ab874c9199b
   - enabled: 1
