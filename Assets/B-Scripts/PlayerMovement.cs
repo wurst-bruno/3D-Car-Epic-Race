@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
         
 
-        if (Vueltas == 3)
+        if (Vueltas > 3)
         {
             Debug.Log("Hola mama");
             Ganaste.SetActive(true);
