@@ -14,11 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Ganaste;
     public GameObject Moriste;
 
-
-    //[Header("Finish Line")]
-    //public GameObject FinishLine;
-    //public GameObject KeyToWin;
-    //public GameObject Instantiador;
+    
 
     public float movementSpeed;
     float movementSpeedBackUp;
@@ -39,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
     {
         movementSpeedBackUp = movementSpeed;
         RotationSpeedBackUp = RotationSpeed;
-        //SceneManager.LoadScene("Scene"); carga la sig escena , se podría usar al final.
 
     }
 
@@ -48,30 +43,9 @@ public class PlayerMovement : MonoBehaviour
         lap_actual.text = "Lap actual:  " + Vueltas.ToString() + "/3";
 
         transform.Translate(0, 0, movementSpeed * Input.GetAxis("Vertical"));
-        //transform.Rotate(RotationSpeed * Input.GetAxis("Horizontal"), 0, 0);
         transform.Rotate(0, RotationSpeed * Input.GetAxis("Horizontal"), 0);
 
-
-        //if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        //{
-        //    //transform.position += new Vector3(0, 0, movementSpeed); es lo mismo que lo de acá abajo
-        //    transform.Translate(0, 0, movementSpeed);
-        //}
-        //if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        //{
-        //    transform.Translate(0, 0, -movementSpeed);
-        //}
-
-
-        //if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        //{
-        //    transform.Rotate(0, RotationSpeed, 0);
-        //}
-        //if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        //{
-        //    transform.Rotate(0, -RotationSpeed, 0);
-        //}
-
+        
         vel_actual.text = "Velocidad actual:  " + movementSpeed.ToString();
         rot_actual.text = "Rotation Speed:  " + RotationSpeed.ToString();
 
@@ -113,13 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        //if(col.gameObject.name == "Instantiador")
-        //{
-        //    Instantiate(KeyToWin);
-        //    Instantiate(FinishLine);
-        //    Destroy(Instantiador);
-        //}
-
+        
         if (col.gameObject.tag == "SpeedUP")
         {
             movementSpeed = 0.5f;
@@ -135,14 +103,7 @@ public class PlayerMovement : MonoBehaviour
             Destroy(col.gameObject);
 
         }
-
-        //if (col.gameObject.tag == "Open door")
-        //{
-        //    Destroy(FinishLine);
-            
-
-        //}
-
+       
         if (col.gameObject.tag == "DeathWall")
         {
             Moriste.SetActive(true);
